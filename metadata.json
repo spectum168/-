@@ -1,0 +1,8 @@
+{
+  "name": "Remix Radiation Dose Dashboard \u0026 Report ",
+  "description": "Remixระบบรายงานสรุปปริมาณรังสีสะสมอัตโนมัติ โรงพยาบาลxxx พร้อมระบบลงนามออนไลน์ของหัวหน้างานรังสีเทคนิคและผู้อำนวยการ",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
