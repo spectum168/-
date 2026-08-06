@@ -143,19 +143,31 @@ export default function App() {
         initialSigs = JSON.parse(storedSignatures);
         if (initialSigs.radiology_chief) {
           const sName = initialSigs.radiology_chief.signerName || '';
-          if (!initialSigs.radiology_chief.isSigned || sName.includes("สิทธิศักดิ์") || sName.includes("เลาหกุล") || sName.includes("สมชาย") || sName.includes("รังสีดี")) {
+          const sPos = initialSigs.radiology_chief.position || '';
+          if (sName.includes("สิทธิศักดิ์") || sName.includes("เลาหกุล") || sName.includes("สมชาย") || sName.includes("รังสีดี") || !initialSigs.radiology_chief.isSigned) {
             initialSigs.radiology_chief.signerName = config.chiefName;
+            if (sName.includes("สิทธิศักดิ์") || sName.includes("เลาหกุล") || sName.includes("สมชาย") || sName.includes("รังสีดี")) {
+              initialSigs.radiology_chief.isSigned = false;
+              initialSigs.radiology_chief.signatureData = undefined;
+              initialSigs.radiology_chief.verificationToken = undefined;
+            }
           }
-          if (!initialSigs.radiology_chief.isSigned || initialSigs.radiology_chief.position?.includes("แม่ทา") || initialSigs.radiology_chief.position?.includes("ตัวอย่าง")) {
+          if (sPos.includes("แม่ทา") || sPos.includes("ตัวอย่าง") || !initialSigs.radiology_chief.isSigned) {
             initialSigs.radiology_chief.position = config.chiefPosition;
           }
         }
         if (initialSigs.hospital_director) {
           const dName = initialSigs.hospital_director.signerName || '';
-          if (!initialSigs.hospital_director.isSigned || dName.includes("เทพฤทธิ์") || dName.includes("พัฒนรังสรรค์") || dName.includes("สมศักดิ์") || dName.includes("วิศิษฏานนท์")) {
+          const dPos = initialSigs.hospital_director.position || '';
+          if (dName.includes("เทพฤทธิ์") || dName.includes("พัฒนรังสรรค์") || dName.includes("สมศักดิ์") || dName.includes("วิศิษฏานนท์") || !initialSigs.hospital_director.isSigned) {
             initialSigs.hospital_director.signerName = config.directorName;
+            if (dName.includes("เทพฤทธิ์") || dName.includes("พัฒนรังสรรค์") || dName.includes("สมศักดิ์") || dName.includes("วิศิษฏานนท์")) {
+              initialSigs.hospital_director.isSigned = false;
+              initialSigs.hospital_director.signatureData = undefined;
+              initialSigs.hospital_director.verificationToken = undefined;
+            }
           }
-          if (!initialSigs.hospital_director.isSigned || initialSigs.hospital_director.position?.includes("แม่ทา") || initialSigs.hospital_director.position?.includes("ตัวอย่าง")) {
+          if (dPos.includes("แม่ทา") || dPos.includes("ตัวอย่าง") || !initialSigs.hospital_director.isSigned) {
             initialSigs.hospital_director.position = config.directorPosition;
           }
         }
